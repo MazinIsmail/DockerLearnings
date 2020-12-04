@@ -1,0 +1,104 @@
+
+
+docker network create localnetwork
+docker run --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" --network=localnetwork docker.elastic.co/elasticsearch/elasticsearch:7.9.0
+docker run --name kibana --network=localnetwork -p 5601:5601 -e ELASTICSEARCH_URL=http://elasticsearch:9200 kibana:7.9.0
+docker network rm localnetwork 
+
+docker run -p 9200:9200 -p 9300:9300 -e “discovery.type=single-node” —- network=localnetwork -d — name=elasticsearch docker.elastic.co/elasticsearch/elasticsearch:7.9.0
+
+http://localhost:9200
+http://localhost:9200/_cat/nodes?v&pretty
+http://localhost:5601
+
+docker restart 
+
+docker run -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+http://localhost:15672/
+guest / guest
+docker run --name redis -d -p 6379:6379 redis
+http://localhost:6379/
+
+
+docker container ls -a
+docker ps -a
+docker stop <container_id>
+docker container stop <container_id>
+docker container kill <container_id>
+docker run -p 9411:9411 openzipkin/zipkin:latest
+docker run -p 9411:9411 -d openzipkin/zipkin:latest
+
+Whenever you restart your docker this container will be start.
+docker run -p 9411:9411 -d --restart=always openzipkin/zipkin:latest
+
+docker logs <container_id>
+docker logs -f <container_id>
+docker images
+
+Just downloads the image
+docker pull <>
+
+Details of image
+docker image inspect <image_id> 
+docker image remove <image_id> 
+docker container pause <container_id>
+docker container unpause <container_id>
+docker container inspect <container_id>
+
+docker inspect <image_id>
+
+Remove all stopped container
+docker container prune
+
+Shows all events that is happening in docker
+docker events
+
+To check what is the top process
+docker top
+
+docker top <container_id>
+
+Stats of the docker
+docker stats
+
+Different things docker manages
+docker system df
+
+
+DockerFile
+
+From ubuntu
+RUN apt-get install -y riak
+ENTRYPOINT echo
+ADD <src> <dst>
+ENV <key> <value>
+WORKDIR <path>
+EXPOSE 8080
+MAINTAINER auther_name
+USER <UID or username>
+VOLUME [<path1>, <path2>]
+
+docker build -t myDockerImage .
+
+docker run -p <containerPort>:<hostPort> myDockerImage
+
+docker login
+docker logout
+
+docker exec -it <container_id> bash	
+
+docker-compose build
+docker-compose up
+
+docker swarm
+
+docker service ls
+docker service ps
+docker service scale
+docker service stop
+docker service logs
+docker service rm
+
+
+
+
